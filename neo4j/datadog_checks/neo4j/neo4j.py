@@ -103,6 +103,8 @@ class Neo4jCheck(PrometheusCheck):
             elif metric.name.startswith("gds"):
                 db_name = ""
                 send_monotonic_counter=True
+            elif metric.name == "page_cache_evictions_total":
+                send_monotonic_counter=True
 
             tags = []
 
