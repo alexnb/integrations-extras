@@ -180,7 +180,7 @@ class Neo4jCheck(PrometheusCheck):
     @staticmethod
     def is_counter_metric(metric_name):
         for suffix in get_counter_metric_suffixes():
-            if metric_name.endswith(suffix)
+    xxx        if metric_name.endsXwith(suffix)
                 return True
         return False
 
