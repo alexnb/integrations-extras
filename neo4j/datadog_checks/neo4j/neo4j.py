@@ -28,7 +28,98 @@ class Config:
 class Neo4jCheck(PrometheusCheck):
     DEFAULT_METRIC_LIMIT = 0
     METADATA_LABEL_PREFIX = "dbmeta"
-
+    COUNTER_METRICS = {
+        'neo4j_database_neo4j_check_point_events_total',
+        'neo4j_database_neo4j_check_point_total_time_total',
+        'neo4j_database_neo4j_cluster_catchup_tx_pull_requests_received_total',
+        'neo4j_database_neo4j_cypher_replan_events_total',
+        'neo4j_database_neo4j_cypher_replan_wait_time_total',
+        'neo4j_database_neo4j_db_query_execution_failure_total',
+        'neo4j_database_neo4j_db_query_execution_success_total',
+        'neo4j_database_neo4j_log_appended_bytes_total',
+        'neo4j_database_neo4j_log_flushes_total',
+        'neo4j_database_neo4j_log_rotation_events_total',
+        'neo4j_database_neo4j_log_rotation_total_time_total',
+        'neo4j_database_neo4j_transaction_committed_read_total',
+        'neo4j_database_neo4j_transaction_committed_total',
+        'neo4j_database_neo4j_transaction_committed_write_total',
+        'neo4j_database_neo4j_transaction_last_closed_tx_id_total',
+        'neo4j_database_neo4j_transaction_last_committed_tx_id_total',
+        'neo4j_database_neo4j_transaction_peak_concurrent_total',
+        'neo4j_database_neo4j_transaction_rollbacks_read_total',
+        'neo4j_database_neo4j_transaction_rollbacks_total',
+        'neo4j_database_neo4j_transaction_rollbacks_write_total',
+        'neo4j_database_neo4j_transaction_started_total',
+        'neo4j_database_neo4j_transaction_terminated_read_total',
+        'neo4j_database_neo4j_transaction_terminated_total',
+        'neo4j_database_neo4j_transaction_terminated_write_total',
+        'neo4j_database_system_check_point_events_total',
+        'neo4j_database_system_check_point_total_time_total',
+        'neo4j_database_system_cluster_catchup_tx_pull_requests_received_total',
+        'neo4j_database_system_cypher_replan_events_total',
+        'neo4j_database_system_cypher_replan_wait_time_total',
+        'neo4j_database_system_db_query_execution_failure_total',
+        'neo4j_database_system_db_query_execution_success_total',
+        'neo4j_database_system_log_appended_bytes_total',
+        'neo4j_database_system_log_flushes_total',
+        'neo4j_database_system_log_rotation_events_total',
+        'neo4j_database_system_log_rotation_total_time_total',
+        'neo4j_database_system_transaction_committed_read_total',
+        'neo4j_database_system_transaction_committed_total',
+        'neo4j_database_system_transaction_committed_write_total',
+        'neo4j_database_system_transaction_last_closed_tx_id_total',
+        'neo4j_database_system_transaction_last_committed_tx_id_total',
+        'neo4j_database_system_transaction_peak_concurrent_total',
+        'neo4j_database_system_transaction_rollbacks_read_total',
+        'neo4j_database_system_transaction_rollbacks_total',
+        'neo4j_database_system_transaction_rollbacks_write_total',
+        'neo4j_database_system_transaction_started_total',
+        'neo4j_database_system_transaction_terminated_read_total',
+        'neo4j_database_system_transaction_terminated_total',
+        'neo4j_database_system_transaction_terminated_write_total',
+        'neo4j_dbms_bolt_accumulated_processing_time_total',
+        'neo4j_dbms_bolt_accumulated_queue_time_total',
+        'neo4j_dbms_bolt_connections_closed_total',
+        'neo4j_dbms_bolt_connections_opened_total',
+        'neo4j_dbms_bolt_messages_done_total',
+        'neo4j_dbms_bolt_messages_failed_total',
+        'neo4j_dbms_bolt_messages_received_total',
+        'neo4j_dbms_bolt_messages_started_total',
+        'neo4j_dbms_bolt_response_failed_total',
+        'neo4j_dbms_bolt_response_ignored_total',
+        'neo4j_dbms_bolt_response_success_total',
+        'neo4j_dbms_db_operation_count_create_total',
+        'neo4j_dbms_db_operation_count_drop_total',
+        'neo4j_dbms_db_operation_count_failed_total',
+        'neo4j_dbms_db_operation_count_recovered_total',
+        'neo4j_dbms_db_operation_count_start_total',
+        'neo4j_dbms_db_operation_count_stop_total',
+        'neo4j_dbms_page_cache_bytes_read_total',
+        'neo4j_dbms_page_cache_bytes_written_total',
+        'neo4j_dbms_page_cache_eviction_exceptions_total',
+        'neo4j_dbms_page_cache_evictions_cooperative_total',
+        'neo4j_dbms_page_cache_evictions_total',
+        'neo4j_dbms_page_cache_flushes_total',
+        'neo4j_dbms_page_cache_hits_total',
+        'neo4j_dbms_page_cache_iops_total',
+        'neo4j_dbms_page_cache_merges_total',
+        'neo4j_dbms_page_cache_page_cancelled_faults_total',
+        'neo4j_dbms_page_cache_page_fault_failures_total',
+        'neo4j_dbms_page_cache_page_faults_total',
+        'neo4j_dbms_page_cache_page_no_pin_page_faults_total',
+        'neo4j_dbms_page_cache_pages_copied_total',
+        'neo4j_dbms_page_cache_page_vectored_faults_failures_total',
+        'neo4j_dbms_page_cache_page_vectored_faults_total',
+        'neo4j_dbms_page_cache_pins_total',
+        'neo4j_dbms_page_cache_throttled_millis_total',
+        'neo4j_dbms_page_cache_throttled_times_total',
+        'neo4j_dbms_page_cache_unpins_total',
+        'neo4j_dbms_vm_gc_count_g1_old_generation_total',
+        'neo4j_dbms_vm_gc_count_g1_young_generation_total',
+        'neo4j_dbms_vm_gc_time_g1_old_generation_total',
+        'neo4j_dbms_vm_gc_time_g1_young_generation_total',
+        'neo4j_dbms_vm_pause_time_total'
+    }
     def check(self, instance):
         self._set_allowlisted_metrics()
         config = self._get_config(instance=instance)
@@ -89,7 +180,7 @@ class Neo4jCheck(PrometheusCheck):
             if metric.name == "metadata_info":
                 continue
 
-            send_monotonic_counter = Neo4jCheck.is_counter_metric(metric.name)
+            send_monotonic_counter = metric.name in Neo4jCheck.COUNTER_METRICS
 
             if metric.name.startswith("neo4j_dbms_"):
                 db_name = GLOBAL_DB_NAME
@@ -174,84 +265,6 @@ class Neo4jCheck(PrometheusCheck):
     def _set_allowlisted_metrics(self):
         self.NAMESPACE = NAMESPACE
         self.metrics_mapper = Neo4jCheck.get_allowlisted_metrics()
-
-    @staticmethod
-    def is_counter_metric(metric_name):
-        for suffix in Neo4jCheck.get_counter_metric_suffixes():
-            if metric_name.endswith(suffix):
-                return True
-        return False
-
-    @staticmethod
-    def get_counter_metric_suffixes():
-        return [
-            '_check_point_events_total',
-            '_check_point_total_time_total',
-            '_cluster_catchup_tx_pull_requests_received_total',
-            '_cypher_replan_events_total',
-            '_cypher_replan_wait_time_total',
-            '_db_query_execution_failure_total',
-            '_db_query_execution_success_total',
-            '_log_appended_bytes_total',
-            '_log_flushes_total',
-            '_log_rotation_events_total',
-            '_log_rotation_total_time_total',
-            '_transaction_committed_read_total',
-            '_transaction_committed_total',
-            '_transaction_committed_write_total',
-            '_transaction_last_closed_tx_id_total',
-            '_transaction_last_committed_tx_id_total',
-            '_transaction_peak_concurrent_total',
-            '_transaction_rollbacks_read_total',
-            '_transaction_rollbacks_total',
-            '_transaction_rollbacks_write_total',
-            '_transaction_started_total',
-            '_transaction_terminated_read_total',
-            '_transaction_terminated_total',
-            '_transaction_terminated_write_total',
-            '_bolt_accumulated_processing_time_total',
-            '_bolt_accumulated_queue_time_total',
-            '_bolt_connections_closed_total',
-            '_bolt_connections_opened_total',
-            '_bolt_messages_done_total',
-            '_bolt_messages_failed_total',
-            '_bolt_messages_received_total',
-            '_bolt_messages_started_total',
-            '_bolt_response_failed_total',
-            '_bolt_response_ignored_total',
-            '_bolt_response_success_total',
-            '_db_operation_count_create_total',
-            '_db_operation_count_drop_total',
-            '_db_operation_count_failed_total',
-            '_db_operation_count_recovered_total',
-            '_db_operation_count_start_total',
-            '_db_operation_count_stop_total',
-            '_page_cache_bytes_read_total',
-            '_page_cache_bytes_written_total',
-            '_page_cache_eviction_exceptions_total',
-            '_page_cache_evictions_cooperative_total',
-            '_page_cache_evictions_total',
-            '_page_cache_flushes_total',
-            '_page_cache_hits_total',
-            '_page_cache_iops_total',
-            '_page_cache_merges_total',
-            '_page_cache_page_cancelled_faults_total',
-            '_page_cache_page_fault_failures_total',
-            '_page_cache_page_faults_total',
-            '_page_cache_page_no_pin_page_faults_total',
-            '_page_cache_pages_copied_total',
-            '_page_cache_page_vectored_faults_failures_total',
-            '_page_cache_page_vectored_faults_total',
-            '_page_cache_pins_total',
-            '_page_cache_throttled_millis_total',
-            '_page_cache_throttled_times_total',
-            '_page_cache_unpins_total',
-            '_vm_gc_count_g1_old_generation_total',
-            '_vm_gc_count_g1_young_generation_total',
-            '_vm_gc_time_g1_old_generation_total',
-            '_vm_gc_time_g1_young_generation_total',
-            '_vm_pause_time_total'
-        ]
 
     @staticmethod
     def get_allowlisted_metrics():
@@ -392,7 +405,7 @@ class Neo4jCheck(PrometheusCheck):
             #
             # page cache metrics
             'page_cache_eviction_exceptions_total': 'page_cache.eviction_exceptions',
-            'page_cache_evictions_total': 'page_cache.evictions.tmp2',
+            'page_cache_evictions_total': 'page_cache.evictions.tmp3',
             'page_cache_flushes_total': 'page_cache.flushes',
             'page_cache_hits_total': 'page_cache.hits',
             'page_cache_page_faults_total': 'page_cache.page_faults',
