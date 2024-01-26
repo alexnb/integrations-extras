@@ -89,7 +89,7 @@ class Neo4jCheck(PrometheusCheck):
             if metric.name == "metadata_info":
                 continue
 
-            send_monotonic_counter=False
+            send_monotonic_counter = Neo4jCheck.is_counter_metric(metric.name)
 
             if metric.name.startswith("neo4j_dbms_"):
                 db_name = GLOBAL_DB_NAME
@@ -103,8 +103,6 @@ class Neo4jCheck(PrometheusCheck):
             elif metric.name.startswith("gds"):
                 db_name = ""
                 send_monotonic_counter=True
-            elif Neo4jCheck.is_counter_metric(metric.name):
-                send_monotonic_counter = True
 
             tags = []
 
@@ -394,7 +392,7 @@ class Neo4jCheck(PrometheusCheck):
             #
             # page cache metrics
             'page_cache_eviction_exceptions_total': 'page_cache.eviction_exceptions',
-            'page_cache_evictions_total': 'page_cache.evictions.tmp1',
+            'page_cache_evictions_total': 'page_cache.evictions.tmp2',
             'page_cache_flushes_total': 'page_cache.flushes',
             'page_cache_hits_total': 'page_cache.hits',
             'page_cache_page_faults_total': 'page_cache.page_faults',
