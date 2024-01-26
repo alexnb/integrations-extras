@@ -181,7 +181,7 @@ class Neo4jCheck(PrometheusCheck):
                 continue
 
             send_monotonic_counter = metric.name in Neo4jCheck.COUNTER_METRICS
-            print('received metric' + metric.name + ' metric value ' + metric.value + ' monotonic ' + send_monotonic_counter)
+            print('received metric' + metric.name + ' monotonic ' + send_monotonic_counter)
 
             if metric.name.startswith("neo4j_dbms_"):
                 db_name = GLOBAL_DB_NAME
