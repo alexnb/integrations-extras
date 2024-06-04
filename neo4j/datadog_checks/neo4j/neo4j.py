@@ -118,7 +118,31 @@ class Neo4jCheck(PrometheusCheck):
         'neo4j_dbms_vm_gc_count_g1_young_generation_total',
         'neo4j_dbms_vm_gc_time_g1_old_generation_total',
         'neo4j_dbms_vm_gc_time_g1_young_generation_total',
-        'neo4j_dbms_vm_pause_time_total'
+        'neo4j_dbms_vm_pause_time_total',
+        'neo4j_dbms_dbms_cypher_internal_notification_count_DeprecatedBtreeIndexSyntax_total', # TODO this one is not in the presentation
+        'neo4j_dbms_dbms_cypher_internal_notification_count_DeprecatedCreatePropertyExistenceConstraintSyntax_total',
+        'neo4j_dbms_dbms_cypher_internal_notification_count_DeprecatedDefaultDatabaseSyntax_total',
+        'neo4j_dbms_dbms_cypher_internal_notification_count_DeprecatedDefaultGraphSyntax_total',
+        'neo4j_dbms_dbms_cypher_internal_notification_count_DeprecatedDropConstraintSyntax_total',
+        'neo4j_dbms_dbms_cypher_internal_notification_count_DeprecatedDropIndexSyntax_total',
+        'neo4j_dbms_dbms_cypher_internal_notification_count_DeprecatedFieldNotification_total',
+        'neo4j_dbms_dbms_cypher_internal_notification_count_DeprecatedFunctionNotification_total',
+        'neo4j_dbms_dbms_cypher_internal_notification_count_DeprecatedHexLiteralSyntax_total',
+        'neo4j_dbms_dbms_cypher_internal_notification_count_DeprecatedOctalLiteralSyntax_total',
+        'neo4j_dbms_dbms_cypher_internal_notification_count_DeprecatedParameterSyntax_total',
+        'neo4j_dbms_dbms_cypher_internal_notification_count_DeprecatedPatternExpressionOutsideExistsSyntax_total',
+        'neo4j_dbms_dbms_cypher_internal_notification_count_DeprecatedPeriodicCommit_total',
+        'neo4j_dbms_dbms_cypher_internal_notification_count_DeprecatedPointsComparison_total',
+        'neo4j_dbms_dbms_cypher_internal_notification_count_DeprecatedProcedureNotification_total',
+        'neo4j_dbms_dbms_cypher_internal_notification_count_DeprecatedPropertyExistenceSyntax_total',
+        'neo4j_dbms_dbms_cypher_internal_notification_count_DeprecatedRelTypeSeparatorNotification_total',
+        'neo4j_dbms_dbms_cypher_internal_notification_count_DeprecatedRepeatedRelVarInPatternExpression_total',
+        'neo4j_dbms_dbms_cypher_internal_notification_count_DeprecatedSelfReferenceToVariableInCreatePattern_total',
+        'neo4j_dbms_dbms_cypher_internal_notification_count_DeprecatedShowExistenceConstraintSyntax_total',
+        'neo4j_dbms_dbms_cypher_internal_notification_count_DeprecatedShowSchemaSyntax_total',
+        'neo4j_dbms_dbms_cypher_internal_notification_count_DeprecatedStartNotification_total',
+        'neo4j_dbms_dbms_cypher_internal_notification_count_DeprecatedUseOfNullInCaseExpression_total',
+        'neo4j_dbms_dbms_cypher_internal_notification_count_DeprecatedAmbiguousGroupingNotification_total'
     }
     def check(self, instance):
         self._set_allowlisted_metrics()
@@ -181,7 +205,7 @@ class Neo4jCheck(PrometheusCheck):
                 continue
 
             send_monotonic_counter = metric.name in Neo4jCheck.COUNTER_METRICS
-            print('received metric' + metric.name + ' monotonic ' + str(send_monotonic_counter))
+            print('received metric ' + metric.name + ' monotonic ' + str(send_monotonic_counter))
 
             if metric.name.startswith("neo4j_dbms_"):
                 db_name = GLOBAL_DB_NAME
@@ -406,7 +430,7 @@ class Neo4jCheck(PrometheusCheck):
             #
             # page cache metrics
             'page_cache_eviction_exceptions_total': 'page_cache.eviction_exceptions',
-            'page_cache_evictions_total': 'page_cache.evictions.tmp3',
+            'page_cache_evictions_total': 'page_cache.evictions',
             'page_cache_flushes_total': 'page_cache.flushes',
             'page_cache_hits_total': 'page_cache.hits',
             'page_cache_page_faults_total': 'page_cache.page_faults',
