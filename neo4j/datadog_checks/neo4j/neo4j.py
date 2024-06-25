@@ -106,7 +106,7 @@ class Neo4jCheck(PrometheusCheck):
                 send_monotonic_counter = True
                 send_buckets = True
 
-            if "cypher_internal_notification_count" in metric.name or "_db_query_execution_success" in metric.name or "_db_query_execution_failure" in metric.name:
+            if "cypher_internal_notification_count" in metric.name or "db_query_execution_success" in metric.name or "db_query_execution_failure" in metric.name:
                 send_monotonic_counter = True
 
             tags = []
